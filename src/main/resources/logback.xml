@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <variable file="app.properties" />
+
+    <appender name="APP" class="ch.qos.logback.core.FileAppender">
+        <file>${appLog}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DB" class="ch.qos.logback.core.FileAppender">
+        <file>${dbLog}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- additivity=false ensures data only goes to this log -->
+    <logger name="db" level="INFO" additivity="false">
+        <appender-ref ref="DB"/>
+    </logger>
+
+    <appender name="DEVICES" class="ch.qos.logback.core.FileAppender">
+        <file>${devicesLog}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="devices" level="INFO" additivity="false">
+        <appender-ref ref="DEVICES"/>
+    </logger>
+
+    <appender name="SCENES" class="ch.qos.logback.core.FileAppender">
+        <file>${scenesLog}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="scenes" level="INFO" additivity="false">
+        <appender-ref ref="SCENES"/>
+    </logger>
+
+    <root>
+        <appender-ref ref="APP"/>
+    </root>
+</configuration>
